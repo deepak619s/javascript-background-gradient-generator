@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Gradient Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html{
+            font-size: 62.5%;
+        }
+
+        body{
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button{
+            padding: 10px 15px;
+            font-size: 15px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .btn {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #myButton{
+            margin-right: 5px;
+            background-color: #000;
+            color: #fff;
+            box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        }
+
+        #myButton2{
+            background-color: yellow;
+            color: #000;
+            box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        }
+
+        h2{
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .copyCode{
+            font-size: 20px;
+            box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="btn">
+            <button id="myButton">#061937</button>
+            <button id="myButton2">#00973</button>
+        </div>
+        <h2>Copy your code here</h2>
+        <div class="copyCode">
+            background-image: linear-gradient(to right, rgb(92, 145, 229), rgb(152, 63, 198));
+        </div>
+    </section>
+
+    <script>
+        let btn1 = document.getElementById('myButton');
+        let btn2 = document.getElementById('myButton2');
+        let copyDiv = document.querySelector('.copyCode');
+        let rgb1 = "#004773";
+        let rgb2 = "#54d542";
+
+        const hexValues = () => {
+            const hexValues = "0123456789abcdef";
+            let colors = "#";
+            for(let i = 0; i < 6; i++){
+               colors = colors + hexValues[Math.floor(Math.random() * 16)];
+            }
+            return colors;
+        }
+
+        const handleButton1 = () => {
+            rgb1 = hexValues();
+            console.log(rgb1);
+
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2}`;
+            copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            btn1.innerHTML = rgb1;
+        };
+
+        const handleButton2 = () => {
+            rgb2 = hexValues();
+            console.log(rgb2);
+
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2}`;
+            btn2.innerHTML = rgb2;
+        };
+
+        btn1.addEventListener('click', handleButton1);
+        btn2.addEventListener('click', handleButton2);
+
+        copyDiv.addEventListener('click', () => {
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyDiv.innerText);
+            alert('Copy To Clipboard');
+        })
+    </script>
+</body>
+</html>
